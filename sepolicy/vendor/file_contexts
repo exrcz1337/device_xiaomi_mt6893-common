@@ -17,15 +17,12 @@
 
 # Mfido
 /(vendor|system/vendor)/bin/fidoca_isee                                                                u:object_r:hal_mfidoca_default_exec:s0
-/(vendor|system/vendor)/bin/fidoca_mitee                                                               u:object_r:hal_mfidoca_default_exec:s0
 
 # Mlipay
 /(vendor|system/vendor)/bin/mlipayd_isee@1\.1                                                          u:object_r:hal_mlipay_default_exec:s0
-/(vendor|system/vendor)/bin/mlipayd_mitee@1\.1                                                         u:object_r:hal_mlipay_default_exec:s0
 
 # Mtdservice
 /(vendor|system/vendor)/bin/mtd_isee@1\.3                                                              u:object_r:hal_mtdservice_default_exec:s0
-/(vendor|system/vendor)/bin/mtd_mitee@1\.3                                                             u:object_r:hal_mtdservice_default_exec:s0
 
 # Power
 /dev/xiaomi-touch                                                                                      u:object_r:vendor_touchfeature_device:s0
@@ -41,4 +38,4 @@
 /(vendor|system/vendor)/bin/mi_thermald                                                                u:object_r:vendor_mi_thermald_exec:s0
 
 # Vibrator
-/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.vibrator\.service                                u:object_r:hal_vibrator_default_exec:s0
+#/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.vibrator\.service                                u:object_r:hal_vibrator_default_exec:s0
