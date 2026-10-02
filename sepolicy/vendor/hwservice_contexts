@@ -6,6 +6,9 @@ com.fingerprints.extension::IFingerprintNavigation                              
 com.fingerprints.extension::IFingerprintSensorTest                                   u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
 vendor.xiaomi.hardware.fx.tunnel::IMiFxTunnel                                        u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
 
+# Sensors
+vendor.xiaomi.hardware.citsensorservice::ICitSensorService                           u:object_r:vendor_hal_citsensorservice_xiaomi_hwservice:s0
+
 # Mfido
 vendor.xiaomi.hardware.mfidoca::IFidoService                                         u:object_r:hal_mfidoca_hwservice:s0
 

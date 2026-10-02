@@ -5,5 +5,13 @@ allow hal_power_default vendor_sysfs_display:file r_file_perms;
 allow hal_power_default vendor_sysfs_gpu:dir search;
 allow hal_power_default vendor_sysfs_gpu:file rw_file_perms;
 
+# Allow libperfmgr to control CPU
+allow hal_power_default proc_cpufreq:dir r_dir_perms;
+allow hal_power_default proc_cpufreq:file rw_file_perms;
+
+# Allow libperfmgr to control GPU boost
+r_dir_file(hal_power_default, sysfs_ged)
+allow hal_power_default sysfs_ged:file w_file_perms;
+
 # DT2W
 allow hal_power_default vendor_touchfeature_device:chr_file rw_file_perms;
