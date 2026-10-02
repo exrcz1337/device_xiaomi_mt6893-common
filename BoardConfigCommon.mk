@@ -154,4 +154,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # Inherit the proprietary files
-include vendor/xiaomi/mt6893-common/BoardConfigVendor.mk
+-include vendor/xiaomi/mt6893-common/BoardConfigVendor.mk
