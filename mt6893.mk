@@ -275,6 +275,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
+    hardware/mediatek/wlan/wifi_hal \
     hardware/xiaomi
 
 # Shipping API level
@@ -303,10 +304,12 @@ PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # Wi-Fi
+$(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
+
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
-    libwifi-hal-wrapper \
+    wlan_assistant \
     wpa_supplicant \
 
 PRODUCT_COPY_FILES += \
