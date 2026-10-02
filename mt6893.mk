@@ -252,6 +252,7 @@ PRODUCT_PACKAGES += \
     init.mt6893.power.rc \
     init.mt6893.usb.rc \
     init.sensor_2_0.rc \
+    init.stnfc.rc \
     ueventd.mt6893.rc
 
 PRODUCT_COPY_FILES += \
