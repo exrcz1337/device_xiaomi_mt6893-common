@@ -103,7 +103,7 @@ PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.3-service \
-    android.hardware.memtrack-service.mediatek-mali
+    android.hardware.memtrack-service.mediatek
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -253,6 +253,7 @@ PRODUCT_PACKAGES += \
     init.mt6893.power.rc \
     init.mt6893.usb.rc \
     init.sensor_2_0.rc \
+    init.stnfc.rc \
     ueventd.mt6893.rc
 
 PRODUCT_COPY_FILES += \
@@ -274,6 +275,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
+    hardware/mediatek/wlan/wifi_hal \
     hardware/xiaomi
 
 # Shipping API level
@@ -288,6 +290,7 @@ PRODUCT_COPY_FILES += \
 
 # USB
 $(call soong_config_set_bool,android_hardware_mediatek_usb,audio_accessory_supported,true)
+$(call soong_config_set_bool,mediatek_gadget,use_custom_usb_gadget_rc,true)
 
 PRODUCT_PACKAGES += \
     android.hardware.usb-service.mediatek \
@@ -301,14 +304,16 @@ PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # Wi-Fi
+$(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
+
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
-    libwifi-hal-wrapper \
+    wlan_assistant \
     wpa_supplicant \
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/mt6893-common/mt6893-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/mt6893-common/mt6893-common-vendor.mk)
