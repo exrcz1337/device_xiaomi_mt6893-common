@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.geq.ui
+package co.aospa.dolby.xiaomi.geq.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import co.aospa.dolby.R
+import co.aospa.dolby.xiaomi.R
 
 enum class PresetNameValidationError {
     NAME_EXISTS,
@@ -17,10 +17,9 @@ enum class PresetNameValidationError {
     @Composable
     fun toErrorMessage() =
         stringResource(
-            id =
-                when (this) {
-                    NAME_EXISTS -> R.string.dolby_geq_preset_name_exists
-                    NAME_TOO_LONG -> R.string.dolby_geq_preset_name_too_long
-                }
+            id = when (this) {
+                NAME_EXISTS -> R.string.dolby_geq_preset_name_exists
+                NAME_TOO_LONG -> R.string.dolby_geq_preset_name_too_long
+            }
         )
 }

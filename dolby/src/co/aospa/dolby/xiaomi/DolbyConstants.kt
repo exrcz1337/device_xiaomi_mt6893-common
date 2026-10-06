@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby
+package co.aospa.dolby.xiaomi
 
 import android.util.Log
 
@@ -27,7 +27,7 @@ class DolbyConstants {
     }
 
     companion object {
-        const val TAG = "DolbyAtmos"
+        const val TAG = "XiaomiDolby"
         const val PREF_ENABLE = "dolby_enable"
         const val PREF_PROFILE = "dolby_profile"
         const val PREF_PRESET = "dolby_preset"
@@ -40,17 +40,16 @@ class DolbyConstants {
         const val PREF_VOLUME = "dolby_volume"
         const val PREF_RESET = "dolby_reset"
 
-        val PROFILE_SPECIFIC_PREFS =
-            setOf(
-                PREF_PRESET,
-                PREF_IEQ,
-                PREF_HP_VIRTUALIZER,
-                PREF_SPK_VIRTUALIZER,
-                PREF_STEREO,
-                PREF_DIALOGUE,
-                PREF_BASS,
-                PREF_VOLUME,
-            )
+        val PROFILE_SPECIFIC_PREFS = setOf(
+            PREF_PRESET,
+            PREF_IEQ,
+            PREF_HP_VIRTUALIZER,
+            PREF_SPK_VIRTUALIZER,
+            PREF_STEREO,
+            PREF_DIALOGUE,
+            PREF_BASS,
+            PREF_VOLUME
+        )
 
         fun dlog(tag: String, msg: String) {
             if (Log.isLoggable(TAG, Log.DEBUG) || Log.isLoggable(tag, Log.DEBUG)) {

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.geq.ui
+package co.aospa.dolby.xiaomi.geq.ui
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,14 +21,26 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TooltipIconButton(icon: ImageVector, text: String, onClick: () -> Unit) {
+fun TooltipIconButton(
+    icon: ImageVector,
+    text: String,
+    onClick: () -> Unit
+) {
     TooltipBox(
         positionProvider = TooltipDefaults.rememberTooltipPositionProvider(),
-        tooltip = { Text(text) },
-        state = rememberTooltipState(),
+        tooltip = {
+            Text(text)
+        },
+        state = rememberTooltipState()
     ) {
-        IconButton(onClick = onClick) {
-            Icon(imageVector = icon, contentDescription = text, modifier = Modifier.size(24.dp))
+        IconButton(
+            onClick = onClick
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = text,
+                modifier = Modifier.size(24.dp)
+            )
         }
     }
 }

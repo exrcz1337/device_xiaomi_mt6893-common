@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby
+package co.aospa.dolby.xiaomi
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 
-private const val TAG = "DolbyAtmos-Boot"
+private const val TAG = "XiaomiDolby-Boot"
 
 class BootCompletedReceiver : BroadcastReceiver() {
 

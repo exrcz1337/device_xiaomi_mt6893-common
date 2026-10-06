@@ -4,16 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.geq.ui
+package co.aospa.dolby.xiaomi.geq.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import co.aospa.dolby.DolbyConstants.Companion.dlog
-import co.aospa.dolby.geq.data.EqualizerRepository
-import co.aospa.dolby.geq.data.Preset
+import co.aospa.dolby.xiaomi.geq.data.EqualizerRepository
+import co.aospa.dolby.xiaomi.geq.data.Preset
+import co.aospa.dolby.xiaomi.DolbyConstants.Companion.dlog
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.drop
@@ -23,7 +23,9 @@ import kotlinx.coroutines.launch
 
 const val TAG = "EqViewModel"
 
-class EqualizerViewModel(private val repository: EqualizerRepository) : ViewModel() {
+class EqualizerViewModel(
+    private val repository: EqualizerRepository
+) : ViewModel() {
 
     private val _presets = MutableStateFlow(repository.builtInPresets)
     val presets = _presets.asStateFlow()
@@ -39,21 +41,21 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
         repository.userPresets
             .onEach { presets ->
                 dlog(TAG, "updated userPresets: $presets")
-                _presets.value =
-                    mutableListOf<Preset>()
-                        .apply {
-                            addAll(presets)
-                            addAll(repository.builtInPresets)
-                        }
-                        .toList()
+                _presets.value = mutableListOf<Preset>().apply {
+                    addAll(presets)
+                    addAll(repository.builtInPresets)
+                }.toList()
 
                 // We can restore the active preset only after the presets list is populated,
                 // since we do not save the preset name but only its gains.
                 if (!presetRestored) {
                     val bandGains = repository.getBandGains()
-                    _preset.value =
-                        _presets.value.find { bandGains == it.bandGains }
-                            ?: Preset(name = "Custom", bandGains = bandGains)
+                    _preset.value = _presets.value.find {
+                        bandGains == it.bandGains
+                    } ?: Preset(
+                        name = "Custom",
+                        bandGains = bandGains
+                    )
                     dlog(TAG, "restored preset: ${_preset.value}")
                     presetRestored = true
                 }
@@ -81,7 +83,9 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
         dlog(TAG, "reset()")
         if (_preset.value.isUserDefined) {
             // Reset gains to 0
-            _preset.value = _preset.value.copy(bandGains = repository.defaultPreset.bandGains)
+            _preset.value = _preset.value.copy(
+                bandGains = repository.defaultPreset.bandGains
+            )
         } else {
             // Switch to flat preset
             _preset.value = repository.defaultPreset
@@ -95,25 +99,26 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
 
     fun setGain(index: Int, gain: Int) {
         dlog(TAG, "setGain($index, $gain)")
-        _preset.value =
-            _preset.value.run {
-                copy(
-                    name = if (!isUserDefined) "Custom" else name,
-                    bandGains =
-                        bandGains
-                            .toMutableList()
-                            // create a new object to ensure the flow emits an update.
-                            .apply { this[index] = this[index].copy(gain = gain) }
-                            .toList(),
-                    isMutated = true,
-                )
-            }
+        _preset.value = _preset.value.run {
+            copy(
+                name = if (!isUserDefined) "Custom" else name,
+                bandGains = bandGains
+                    .toMutableList()
+                    // create a new object to ensure the flow emits an update.
+                    .apply { this[index] = this[index].copy(gain = gain) }
+                    .toList(),
+                isMutated = true
+            )
+        }
     }
 
     // Returns string containing the error message if it failed, otherwise null
     private fun validatePresetName(name: String): PresetNameValidationError? {
         // Ensure we don't have another preset with the same name
-        return if (_presets.value.any { it.name.equals(name.trim(), ignoreCase = true) }) {
+        return if (
+            _presets.value
+            .any { it.name.equals(name.trim(), ignoreCase = true) }
+        ) {
             PresetNameValidationError.NAME_EXISTS
         } else if (name.length > 50) {
             PresetNameValidationError.NAME_TOO_LONG
@@ -126,8 +131,11 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
             dlog(TAG, "createNewPreset failed: $it")
             return it
         }
-        _preset.value =
-            _preset.value.copy(name = name.trim(), isUserDefined = true, isMutated = false)
+        _preset.value = _preset.value.copy(
+            name = name.trim(),
+            isUserDefined = true,
+            isMutated = false
+        )
         return null
     }
 
@@ -145,7 +153,9 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
 
     fun deletePreset(preset: Preset, shouldReset: Boolean = true) {
         dlog(TAG, "deletePreset($preset)")
-        viewModelScope.launch { repository.removePreset(preset) }
+        viewModelScope.launch {
+            repository.removePreset(preset)
+        }
         if (shouldReset) {
             _preset.value = repository.defaultPreset
         }
@@ -155,10 +165,9 @@ class EqualizerViewModel(private val repository: EqualizerRepository) : ViewMode
         val Factory = viewModelFactory {
             initializer {
                 EqualizerViewModel(
-                    repository =
-                        EqualizerRepository(
-                            this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
-                        )
+                    repository = EqualizerRepository(
+                        this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
+                    )
                 )
             }
         }

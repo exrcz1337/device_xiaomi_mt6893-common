@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby
+package co.aospa.dolby.xiaomi
 
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService

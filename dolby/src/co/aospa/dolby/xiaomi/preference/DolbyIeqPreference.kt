@@ -4,18 +4,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.preference
+package co.aospa.dolby.xiaomi.preference
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceViewHolder
-import co.aospa.dolby.R
+import co.aospa.dolby.xiaomi.R
 
 // Preference with icon on the right side
-class DolbyIeqPreference(context: Context, attrs: AttributeSet?) : ListPreference(context, attrs) {
+class DolbyIeqPreference(
+    context: Context,
+    attrs: AttributeSet?,
+) : ListPreference(context, attrs) {
 
     init {
         widgetLayoutResource = R.layout.ieq_icon_layout
@@ -34,6 +38,6 @@ class DolbyIeqPreference(context: Context, attrs: AttributeSet?) : ListPreferenc
             1 -> R.drawable.ic_ieq_balanced
             2 -> R.drawable.ic_ieq_warm
             3 -> R.drawable.ic_ieq_detailed
-            else -> R.drawable.ic_ieq_off
+            else -> 0 // should never hit this!
         }
 }

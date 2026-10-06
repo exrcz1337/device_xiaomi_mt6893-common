@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.geq.ui
+package co.aospa.dolby.xiaomi.geq.ui
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
@@ -17,7 +17,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun ConfirmationDialog(text: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
+fun ConfirmationDialog(
+    text: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
     var showDialog by remember { mutableStateOf(true) }
     if (!showDialog) {
         onDismiss()
@@ -33,14 +37,22 @@ fun ConfirmationDialog(text: String, onConfirm: () -> Unit, onDismiss: () -> Uni
                     onConfirm()
                 }
             ) {
-                Text(stringResource(id = android.R.string.ok))
+                Text(
+                    stringResource(id = android.R.string.ok)
+                )
             }
         },
         dismissButton = {
-            TextButton(onClick = { showDialog = false }) {
-                Text(stringResource(id = android.R.string.cancel))
+            TextButton(
+                onClick = { showDialog = false }
+            ) {
+                Text(
+                    stringResource(id = android.R.string.cancel)
+                )
             }
         },
-        text = { Text(text) },
+        text = {
+            Text(text)
+        }
     )
 }

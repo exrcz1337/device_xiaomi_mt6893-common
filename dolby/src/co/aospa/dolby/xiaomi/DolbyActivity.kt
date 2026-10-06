@@ -4,11 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby
+package co.aospa.dolby.xiaomi
 
 import android.os.Bundle
-import co.aospa.dolby.preference.DolbySettingsFragment
+import co.aospa.dolby.xiaomi.preference.DolbySettingsFragment
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
 
 private const val TAG = "DolbyActivity"
 
@@ -16,13 +17,8 @@ class DolbyActivity : CollapsingToolbarBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(
-                com.android.settingslib.collapsingtoolbar.R.id.content_frame,
-                DolbySettingsFragment(),
-                TAG,
-            )
-            .commit()
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, DolbySettingsFragment(), TAG)
+                .commit()
     }
 }

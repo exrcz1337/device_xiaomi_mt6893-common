@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package co.aospa.dolby.geq.ui
+package co.aospa.dolby.xiaomi.geq.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -21,14 +21,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import co.aospa.dolby.R
+import co.aospa.dolby.xiaomi.R
 
 @Composable
 fun PresetNameDialog(
     title: String,
     presetName: String = "",
     onPresetNameSet: (String) -> PresetNameValidationError?,
-    onDismissDialog: () -> Unit,
+    onDismissDialog: () -> Unit
 ) {
     var showDialog by remember { mutableStateOf(true) }
     if (!showDialog) {
@@ -53,12 +53,18 @@ fun PresetNameDialog(
                     error = null
                 }
             ) {
-                Text(stringResource(id = android.R.string.ok))
+                Text(
+                    stringResource(id = android.R.string.ok)
+                )
             }
         },
         dismissButton = {
-            TextButton(onClick = { showDialog = false }) {
-                Text(stringResource(id = android.R.string.cancel))
+            TextButton(
+                onClick = { showDialog = false }
+            ) {
+                Text(
+                    stringResource(id = android.R.string.cancel)
+                )
             }
         },
         title = { Text(title) },
@@ -67,18 +73,22 @@ fun PresetNameDialog(
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
-                    label = { Text(stringResource(id = R.string.dolby_geq_preset_name)) },
+                    label = {
+                        Text(
+                            stringResource(id = R.string.dolby_geq_preset_name)
+                        )
+                    },
                     isError = error != null,
-                    singleLine = true,
+                    singleLine = true
                 )
                 error?.let {
                     Text(
                         text = it.toErrorMessage(),
                         color = MaterialTheme.colorScheme.error,
-                        modifier = Modifier.padding(top = 8.dp),
+                        modifier = Modifier.padding(top = 8.dp)
                     )
                 }
             }
-        },
+        }
     )
 }
