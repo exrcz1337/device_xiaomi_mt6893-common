@@ -3,6 +3,11 @@ attribute hal_dms;
 attribute hal_dms_client;
 attribute hal_dms_server;
 
+# Sensors
+attribute vendor_hal_citsensorservice_xiaomi;
+attribute vendor_hal_citsensorservice_xiaomi_client;
+attribute vendor_hal_citsensorservice_xiaomi_server;
+
 # Mfido
 attribute hal_mfidoca;
 attribute hal_mfidoca_client;
@@ -17,8 +22,3 @@ attribute hal_mlipay_server;
 attribute hal_mtdservice;
 attribute hal_mtdservice_client;
 attribute hal_mtdservice_server;
-
-# Sensor
-attribute vendor_hal_citsensorservice_xiaomi;
-attribute vendor_hal_citsensorservice_xiaomi_client;
-attribute vendor_hal_citsensorservice_xiaomi_server;
